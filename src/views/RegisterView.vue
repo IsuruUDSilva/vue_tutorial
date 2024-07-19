@@ -1,0 +1,52 @@
+<template>
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div>
+                <div class="text-center mt-5">
+                    <h2>Register Form</h2>
+                </div>
+                <div class="mx-5">
+                    <form @submit.prevent="handleSubmit">
+                        <div class="form-group mb-3">
+                            <input type="email" id="email" v-model="email" class="form-control" placeholder="Email"
+                                required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="password" id="password" v-model="password" class="form-control"
+                                placeholder="Password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary rounded">Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script lang="ts">
+import { defineComponent, ref } from 'vue';
+
+export default defineComponent({
+    name: 'RegisterView',
+    setup() {
+        const email = ref('');
+        const password = ref('');
+
+        const handleSubmit = () => {
+            console.log('Email:', email.value);
+            console.log('Password:', password.value);
+            // Add your Register logic here
+        };
+
+        return {
+            email,
+            password,
+            handleSubmit,
+        };
+    },
+});
+</script>
+
+<style scoped>
+/* Add your styles here if needed */
+</style>
