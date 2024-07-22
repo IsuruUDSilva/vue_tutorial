@@ -3,10 +3,10 @@ import getters from './getters'
 import mutations from './mutations'
 
 export default {
-  namespace: true,
+  namespaced: true,
   state() {
     return {
-      name: 'Isuru'
+      name: 'Isuru Umayanga De Silva'
     }
   },
   mutations,

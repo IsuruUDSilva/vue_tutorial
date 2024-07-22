@@ -6,7 +6,7 @@
                     <h2>Register Form</h2>
                 </div>
                 <div class="mx-5">
-                    <form @submit.prevent="handleSubmit">
+                    <form @submit.prevent="onSignup">
                         <div class="form-group mb-3">
                             <input type="email" id="email" v-model="email" class="form-control" placeholder="Email"
                                 required>
@@ -16,6 +16,7 @@
                                 placeholder="Password" required>
                         </div>
                         <button type="submit" class="btn btn-primary rounded">Register</button>
+                        <router-link class="nav-link blue-text" to="/login">Go to Login Page</router-link>
                     </form>
                 </div>
             </div>
@@ -24,29 +25,31 @@
 </template>
 
 <script lang="ts">
+import { SIGNUP_ACTION } from '@/stores/storeConstants';
 import { defineComponent, ref } from 'vue';
+import { mapActions } from 'vuex';
 
 export default defineComponent({
-    name: 'RegisterView',
-    setup() {
-        const email = ref('');
-        const password = ref('');
-
-        const handleSubmit = () => {
-            console.log('Email:', email.value);
-            console.log('Password:', password.value);
-            // Add your Register logic here
-        };
-
+    data() {
         return {
-            email,
-            password,
-            handleSubmit,
-        };
+            email: '',
+            password: '',
+            errors: '',
+        }
     },
+    methods: {
+        ...mapActions('auth', {
+            signup: SIGNUP_ACTION
+        }),
+        onSignup() {
+            this.signup({ email: this.email, password: this.password })
+        }
+    }
 });
 </script>
 
 <style scoped>
-/* Add your styles here if needed */
+.blue-text {
+    color: cornflowerblue;
+}
 </style>

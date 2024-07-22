@@ -3,7 +3,7 @@
         <div class="col-md-6 offset-md-3">
             <div>
                 <div class="text-center mt-5">
-                    <h2>Login Form {{ firstName }}</h2>
+                    <h2>Login Form </h2>
                 </div>
                 <div class="mx-5">
                     <form @submit.prevent="handleSubmit">
@@ -12,13 +12,12 @@
                                 required>
                         </div>
                         <div class="form-group mb-3">
-                            <label for="password">Password</label>
                             <input type="password" id="password" v-model="password" class="form-control"
                                 placeholder="Password" required>
                         </div>
                         <button type="submit" class="btn btn-primary rounded">Login</button>
                         <router-link class="nav-link blue-text" to="/register">Don't have an account?
-                            Signup</router-link>
+                            Register</router-link>
                     </form>
                 </div>
             </div>
@@ -33,7 +32,7 @@ import { mapState } from 'vuex';
 export default defineComponent({
     computed: {
         ...mapState('auth', {
-            firstName: (state) => state.name
+            firstName: (state: any) => state.name
         })
     },
     name: 'LoginView',
@@ -44,7 +43,6 @@ export default defineComponent({
         const handleSubmit = () => {
             console.log('Email:', email.value);
             console.log('Password:', password.value);
-            // Add your login logic here
         };
 
         return {
